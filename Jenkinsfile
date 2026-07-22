@@ -2,7 +2,7 @@
 library 'pipeline-library'
 
 buildNPMPackage {
-    nodeVersion = '22.19.0'
-    npmVersion = '10.9.3'
+    nodeVersion = '24.18.0'
+    npmVersion = '11.16.0'
     labels = 'arm64'
 }
