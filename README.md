@@ -46,7 +46,6 @@ $ npm i --save-dev <additional deps>
 | `axway/+chai`       | Chai support                     | `eslint-plugin-chai-expect` `eslint-plugin-chai-friendly` |
 | `axway/+mocha`      | Mocha unit test rules            | `eslint-plugin-mocha`                                     |
 | `axway/+node-test`  | Node.js test runner and `assert` | `eslint-node-test`                                        |
-| `axway/+react`      | React.js and .jsx support        | `@eslint-react/eslint-plugin` `eslint-plugin-jsx-a11y`    |
 | `axway/+typescript` | TypeScript support               | `@typescript-eslint/eslint-plugin`                        |
 | `axway/+vue`        | Vue.js support                   | `eslint-plugin-vue`                                       |
 
@@ -61,12 +60,8 @@ $ npm i --save-dev <additional deps>
 <!-- -->
 
 > [!WARNING]
-> `eslint-config-axway` is now an ES module. If your `eslint.config.js` is CommonJS, loading it with `require('eslint-config-axway')` (or any of its `/env-*` or `/+*` subpaths) returns the module namespace object, not the config directly — add `.default`, e.g. `require('eslint-config-axway/env-node').default`. Projects using an ESM `eslint.config.js` (or `.mjs`) can `import` it as before with no changes.
-
-<!-- -->
-
-> [!WARNING]
-> [`eslint-plugin-jsx-a11y`](https://www.npmjs.com/package/eslint-plugin-jsx-a11y), used by `axway/+react`, has not yet released a version with an eslint 10 peer dependency range, so installing it alongside eslint 10 requires `npm install --legacy-peer-deps` (or an equivalent override). It otherwise should work correctly under eslint 10.
+> `eslint-config-axway` is now an ES module. If your `eslint.config.js` is CommonJS, loading it with `require('eslint-config-axway')` (or any of its `/env-*` or `/+*` subpaths) returns the module namespace object, not the config directly — destructure the `default` property (e,g, `const { default: axwayRecommended } = require(...`) or add `.default` to the require (e.g. `... = require('eslint-config-axway/env-node').default`) to use in CommonJS config files.
+> Projects using an ESM `eslint.config.js` (or `.mjs`) can `import` it as before with no changes.
 
 ### `eslint.config.js`
 

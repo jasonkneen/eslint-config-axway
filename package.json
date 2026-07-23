@@ -11,7 +11,6 @@
 		"./+chai": "./+chai.js",
 		"./+mocha": "./+mocha.js",
 		"./+node-test": "./+node-test.js",
-		"./+react": "./+react.js",
 		"./+typescript": "./+typescript.js",
 		"./+vue": "./+vue.js",
 		"./package.json": "./package.json"
@@ -53,20 +52,15 @@
 		"eslint": "^10.0.0"
 	},
 	"peerDependencies": {
-		"@eslint-react/eslint-plugin": "^5.17.3",
 		"@typescript-eslint/eslint-plugin": "^8.65.0",
 		"eslint": "^10.0.0",
 		"eslint-plugin-chai-expect": "^4.1.0",
 		"eslint-plugin-chai-friendly": "^1.1.0",
-		"eslint-plugin-jsx-a11y": "^6.10.2",
 		"eslint-plugin-mocha": "^11.2.0",
 		"eslint-plugin-vue": "^10.10.0",
 		"eslint-node-test": "^0.3.0"
 	},
 	"peerDependenciesMeta": {
-		"@eslint-react/eslint-plugin": {
-			"optional": true
-		},
 		"@typescript-eslint/parser": {
 			"optional": true
 		},
@@ -77,9 +71,6 @@
 			"optional": true
 		},
 		"eslint-plugin-chai-friendly": {
-			"optional": true
-		},
-		"eslint-plugin-jsx-a11y": {
 			"optional": true
 		},
 		"eslint-plugin-mocha": {
