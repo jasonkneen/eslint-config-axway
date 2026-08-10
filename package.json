@@ -1,6 +1,6 @@
 {
 	"name": "eslint-config-axway",
-	"version": "10.0.0",
+	"version": "11.0.0",
 	"description": "Shareable eslint config for Axway projects",
 	"main": "./index.js",
 	"type": "module",
