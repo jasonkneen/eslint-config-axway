@@ -1,6 +1,6 @@
-# Changlog
+# Changelog
 
-## Unreleased
+## v11.0.0 (Aug 10, 2026)
 
 * BREAKING CHANGE: Drops support for eslint 9. Requires eslint >=10.0.0.
 * BREAKING CHANGE: Replaces unmaintained `eslint-plugin-import` with `eslint-plugin-import-x`. Any `import/*` rule overrides in consuming projects need to be renamed to `import-x/*`.
