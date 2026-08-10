@@ -1,3 +1,3 @@
-const axwayRecommended = require('./env-node');
+import axwayRecommended from './env-node.js';
 
-module.exports = axwayRecommended;
+export default axwayRecommended;

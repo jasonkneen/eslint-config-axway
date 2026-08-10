@@ -5,7 +5,6 @@ Axway JavaScript coding standards shareable config for [eslint](http://eslint.or
 - [Installation](#installation)
 - [Overview](#overview)
 - [Usage](#usage)
-- [`eslint.config.js`](#eslintconfigjs)
 - [Extend the configuration with your own overrides](#extend-the-configuration-with-your-own-overrides)
   - [Unit test lint configuration](#unit-test-lint-configuration)
   - [Running eslint](#running-eslint)
@@ -31,7 +30,7 @@ Determine which environment you wish to target. Choose __ONE__ per configuration
 | `axway/env-node`     | Node.js support (extends `axway`)     |
 
 > [!NOTE]
-> The default `axway` configuration automatically includes the [`eslint-plugin-import`](https://www.npmjs.com/package/eslint-plugin-import), [`eslint-plugin-security`](https://www.npmjs.com/package/eslint-plugin-security), and [`eslint-plugin-promise`](https://www.npmjs.com/package/eslint-plugin-promise) plugins.
+> The default `axway` configuration automatically includes the [`eslint-plugin-import-x`](https://www.npmjs.com/package/eslint-plugin-import-x), [`eslint-plugin-security`](https://www.npmjs.com/package/eslint-plugin-security), and [`eslint-plugin-promise`](https://www.npmjs.com/package/eslint-plugin-promise) plugins.
 > These help improve the quality of your JavaScript code.
 
 ### Step 2 (optional)
@@ -42,18 +41,27 @@ Select additional configurations. These require you to add dependencies to your 
 $ npm i --save-dev <additional deps>
 ```
 
-| Addon               | Description               | Additional Dependencies                                   |
-| :------------------ | :------------------------ | :-------------------------------------------------------- |
-| `axway/+chai`       | Chai support              | `eslint-plugin-chai-expect` `eslint-plugin-chai-friendly` |
-| `axway/+mocha`      | Mocha unit test rules     | `eslint-plugin-mocha`                                     |
-| `axway/+react`      | React.js and .jsx support | `eslint-plugin-react` `eslint-plugin-jsx-a11y`            |
-| `axway/+typescript` | TypeScript support        | `@typescript-eslint/eslint-plugin`                        |
-| `axway/+vue`        | Vue.js support            | `eslint-plugin-vue`                                       |
+| Addon               | Description                      | Additional Dependencies                                   |
+| :------------------ | :------------------------------- | :-------------------------------------------------------- |
+| `axway/+chai`       | Chai support                     | `eslint-plugin-chai-expect` `eslint-plugin-chai-friendly` |
+| `axway/+mocha`      | Mocha unit test rules            | `eslint-plugin-mocha`                                     |
+| `axway/+node-test`  | Node.js test runner and `assert` | `eslint-node-test`                                        |
+| `axway/+typescript` | TypeScript support               | `@typescript-eslint/eslint-plugin`                        |
+| `axway/+vue`        | Vue.js support                   | `eslint-plugin-vue`                                       |
+
+> [!NOTE]
+> `axway/+node-test` requires eslint >=10.4.0 and Node.js >=22, stricter than this package's own minimums.
 
 ## Usage
 
 > [!WARNING]
-> `eslint-config-axway` requires eslint >=9.34.0. If you need to use eslint 8 or earlier then use `eslint-config-axway` v9.0.0.
+> `eslint-config-axway` requires eslint >=10.0.0. If you need to use eslint 9, then use `eslint-config-axway` v10.x. If you need to use eslint 8 or earlier then use `eslint-config-axway` v9.0.0.
+
+<!-- -->
+
+> [!WARNING]
+> `eslint-config-axway` is now an ES module. If your `eslint.config.js` is CommonJS, loading it with `require('eslint-config-axway')` (or any of its `/env-*` or `/+*` subpaths) returns the module namespace object, not the config directly — destructure the `default` property (e,g, `const { default: axwayRecommended } = require(...`) or add `.default` to the require (e.g. `... = require('eslint-config-axway/env-node').default`) to use in CommonJS config files.
+> Projects using an ESM `eslint.config.js` (or `.mjs`) can `import` it as before with no changes.
 
 ### `eslint.config.js`
 
@@ -62,8 +70,8 @@ The simples way of getting started with the configuration is adding a `eslint.co
 ```js
 // eslint.config.js
 
-const axwayRecommended = require('eslint-config-axway');
-module.exports = axwayRecommended;
+import axwayRecommended from 'eslint-config-axway';
+export default axwayRecommended;
 ```
 
 ### Extend the configuration with your own overrides
@@ -75,10 +83,10 @@ To extend the axway config, Update the `eslint.config.js` file in the root of yo
 ```js
 // eslint.config.js
 
-const axwayRecommended = require('eslint-config-axway');
-const { defineConfig } = require('eslint/config');
+import axwayRecommended from 'eslint-config-axway';
+import { defineConfig } from 'eslint/config';
 
-module.exports = defineConfig([
+export default defineConfig([
     {
         extends: [
             axwayRecommended
@@ -103,12 +111,12 @@ If you're using mocha like in this scenario you may also want to replace the bas
 ```js
 // eslint.config.js
 
-const axwayRecommended = require('eslint-config-axway/env-node');
-const axwayMocha = require('eslint-config-axway/+mocha');
-const axwayChai = require('eslint-config-axway/+chai');
-const { defineConfig } = require('eslint/config');
+import axwayRecommended from 'eslint-config-axway/env-node';
+import axwayMocha from 'eslint-config-axway/+mocha';
+import axwayChai from 'eslint-config-axway/+chai';
+import { defineConfig } from 'eslint/config';
 
-module.exports = defineConfig([
+export default defineConfig([
     {
         extends: [
             axwayRecommended
@@ -164,4 +172,4 @@ $ npm run lint
 This project is open source and provided under the Apache Public License (version 2). Please make sure you see the LICENSE file included in this distribution for more details on the license.
 Also, please take notice of the privacy notice at the end of the file.
 
-(C) Copyright 2017-2025, [Axway, Inc](http://www.axway.com) All Rights Reserved.
+(C) Copyright 2017-2026, [Axway, Inc](http://www.axway.com) All Rights Reserved.

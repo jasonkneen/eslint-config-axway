@@ -1,16 +1,16 @@
-const { defineConfig } = require('eslint/config');
-const { browser } = require('globals');
+import { defineConfig } from 'eslint/config';
+import globals from 'globals';
 
-const axwayRecommended = require('./index.js');
+import axwayRecommended from './index.js';
 
-module.exports = defineConfig([
-	{
-		name: 'axway/env-browser',
-		extends: [
-			axwayRecommended
-		],
-		languageOptions: {
-			globals: browser
-		}
+const { browser } = globals;
+
+export default defineConfig({
+	name: 'axway/env-browser',
+	extends: [
+		axwayRecommended
+	],
+	languageOptions: {
+		globals: browser
 	}
-]);
+});

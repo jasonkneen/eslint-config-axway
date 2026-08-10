@@ -1,5 +1,16 @@
 # Changlog
 
+## Unreleased
+
+* BREAKING CHANGE: Drops support for eslint 9. Requires eslint >=10.0.0.
+* BREAKING CHANGE: Replaces unmaintained `eslint-plugin-import` with `eslint-plugin-import-x`. Any `import/*` rule overrides in consuming projects need to be renamed to `import-x/*`.
+* BREAKING CHANGE: Raises minimum Node.js version to match eslint 10's requirement (`^20.19.0 || ^22.13.0 || >=24`).
+* BREAKING CHANGE: `eslint-config-axway` is now an ES module. A CommonJS `eslint.config.js` must add `.default` when requiring it or any `/env-*` or `/+*` subpath (e.g. `require('eslint-config-axway/env-node').default`); an ESM `eslint.config.js`/`.mjs` needs no changes.
+* BREAKING CHANGE: Removes the `+react` extension. `eslint-plugin-react` has no eslint 10 compatible release and crashes at runtime under eslint 10.
+* BREAKING CHANGE: Removes the `verify-peer-dependency` helper and the `find-root`/`semver` dependencies it needed. A missing or incompatible optional peer (e.g. `eslint-plugin-mocha` for `axway/+mocha`) now surfaces as a plain Node.js "Cannot find package" error instead of a custom message with the required version range.
+* feat: Adds `axway/+node-test` extension for linting the Node.js native test runner (`node:test`) and `node:assert` usage, using [`eslint-node-test`](https://github.com/sindresorhus/eslint-node-test). Requires eslint >=10.4.0 and Node.js >=22.
+* chore: Updated dependencies to versions with eslint 10 support (`@eslint/js`, `@stylistic/eslint-plugin`, `eslint-plugin-promise`, `eslint-plugin-security`, `eslint-plugin-vue`, `@typescript-eslint/eslint-plugin`, `eslint-plugin-chai-expect`).
+
 ## v10.0.0 (Dec 18, 2025)
 
 * BREAKING CHANGE: Drops support for eslint 8.
